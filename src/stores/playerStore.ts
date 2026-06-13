@@ -5,6 +5,9 @@ export const usePlayerStore = create<{
   currentSong: any;
   setSongs: (songs: any[]) => void;
   setCurrentSong: (song: any) => void;
+  loop: boolean;
+  setLoop: (loop: boolean) => void;
+  toggleLoop: () => void;
 }>((set) => ({
   songs: [],
   currentSong: null,
@@ -15,4 +18,12 @@ export const usePlayerStore = create<{
     set({
       currentSong: song,
     }),
+  loop: false,
+
+  setLoop: (loop) => set({ loop }),
+
+  toggleLoop: () =>
+    set((state) => ({
+      loop: !state.loop,
+    })),
 }));

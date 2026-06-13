@@ -27,6 +27,10 @@ class MusicPlayer {
     });
   }
 
+  setLoop(loop: boolean) {
+    this.audio.loop = loop;
+  }
+
   pause() {
     this.audio.pause();
   }

@@ -2,6 +2,7 @@ import { IconButton, Slider } from "@mui/material";
 
 import { useEffect, useState } from "react";
 import { musicPlayer } from "../services/musicPlayer";
+import { usePlayerStore } from "../stores/playerStore";
 
 export default function PlayerBar() {
   const [position, setPosition] = useState(0);
@@ -17,6 +18,14 @@ export default function PlayerBar() {
 
     return () => clearInterval(timer);
   }, []);
+
+  const loop = usePlayerStore((state) => state.loop);
+
+  const toggleLoop = usePlayerStore((state) => state.toggleLoop);
+
+  useEffect(() => {
+    musicPlayer.setLoop(loop);
+  }, [loop]);
 
   return (
     <>
@@ -40,6 +49,9 @@ export default function PlayerBar() {
         }}
       >
         {playing ? "PAUSE" : "PLAY"}
+      </IconButton>
+      <IconButton onClick={toggleLoop} color={loop ? "primary" : "default"}>
+        LOOP
       </IconButton>
     </>
   );

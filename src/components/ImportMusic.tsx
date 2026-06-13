@@ -29,7 +29,7 @@ export default function ImportMusic({ refresh }: { refresh: () => void }) {
           hidden
           multiple
           type="file"
-          accept="audio/*"
+          accept="*/*"
           onChange={importFiles}
         />
       </Button>
